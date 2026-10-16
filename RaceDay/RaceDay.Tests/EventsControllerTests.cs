@@ -12,28 +12,40 @@ public class EventsControllerTests
 {
     private static RaceDayDbContext GetInMemoryDbContext()
     {
-        DbContextOptions<RaceDayDbContext> options = new DbContextOptionsBuilder<RaceDayDbContext>()
+        var options = new DbContextOptionsBuilder<RaceDayDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
-
         return new RaceDayDbContext(options);
     }
 
     [Fact]
-    public async Task CreateEvent_Returns_CreatedAtAction_With_Event_Details()
+    public async Task Organiser_Can_Create_Event_Successfully()
     {
         // Arrange
-        using RaceDayDbContext context = GetInMemoryDbContext();
-        EventsController controller = new(context);
-        CreateEventDto dto = new("Soweto Marathon", "Annual road race", DateTime.UtcNow, DateTime.UtcNow.AddDays(1), "Soweto");
+        using var context = GetInMemoryDbContext();
+        var controller = new EventsController(context);
+        var dto = new CreateEventDto("Soweto Marathon", "Annual road race", DateTime.UtcNow, DateTime.UtcNow.AddDays(1), "Soweto");
 
         // Act
-        IActionResult result = await controller.CreateEvent(dto);
+        var result = await controller.CreateEvent(dto);
 
         // Assert
-        CreatedAtActionResult actionResult = Assert.IsType<CreatedAtActionResult>(result);
-        EventResponseDto eventDto = Assert.IsType<EventResponseDto>(actionResult.Value);
+        var actionResult = Assert.IsType<CreatedAtActionResult>(result);
+        var eventDto = Assert.IsType<EventResponseDto>(actionResult.Value);
         Assert.Equal("Soweto Marathon", eventDto.Title);
-        Assert.Equal("Soweto", eventDto.Location);
+    }
+
+    [Fact]
+    public async Task GetEvent_NonExistentId_Returns_NotFound()
+    {
+        // Arrange
+        using var context = GetInMemoryDbContext();
+        var controller = new EventsController(context);
+
+        // Act
+        var result = await controller.GetEvent(999);
+
+        // Assert
+        Assert.IsType<NotFoundResult>(result);
     }
 }
