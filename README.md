@@ -12,6 +12,13 @@
 - **Continuous Integration (CI/CD):** GitHub Actions Automated Build & Test Pipeline (`.github/workflows/ci.yml`)[cite: 8, 11]
 - **External Integration:** Live Weather Forecast API Integration (Open-Meteo)[cite: 9]
 
+-----------
+
+## Continuous Integration & Build Status
+
+![GitHub Actions CI Build Success](images/ci-build-success.png)
+
+----------
 
 ## Demonstration Video
 
