@@ -19,11 +19,11 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore NuGet Dependencies
-      run: dotnet restore
+    - name: Restore Dependencies
+      run: dotnet restore RaceDay/
 
     - name: Build Solution
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build RaceDay/ 
 
     - name: Execute xUnit Unit Tests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test RaceDay/ 
