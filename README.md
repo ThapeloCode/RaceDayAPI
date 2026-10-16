@@ -5,12 +5,12 @@
 
 ## Technical Stack & Architecture
 
-**Framework:** ASP.NET Core Web API (.NET 8)[cite: 8, 11]
-**ORM / Database:** Entity Framework Core (Code-First)[cite: 11, 12] & Microsoft SQL Server (`RaceDayDb`)[cite: 7, 12]
+**Framework:** ASP.NET Core Web API (.NET 8).
+**ORM / Database:** Entity Framework Core (Code-First) & Microsoft SQL Server (`RaceDayDb`).
 **Authentication & Security:** JWT Bearer Authentication with Role-Based Access Control (`Organiser`, `Admin`, `Participant`) & BCrypt password hashing
-**Testing Suite:** xUnit Test Framework with EF Core In-Memory Database Provider[cite: 11]
-**Continuous Integration (CI/CD):** GitHub Actions Automated Build & Test Pipeline (`.github/workflows/ci.yml`)[cite: 8, 11]
-**External Integration:** Live Weather Forecast API Integration (Open-Meteo)
+**Testing Suite:** xUnit Test Framework with EF Core In-Memory Database Provider.
+**Continuous Integration (CI/CD):** GitHub Actions Automated Build & Test Pipeline (`.github/workflows/ci.yml`).
+**External Integration:** Live Weather Forecast API Integration (Open-Meteo).
 
 
 
