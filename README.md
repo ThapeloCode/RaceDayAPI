@@ -12,7 +12,10 @@
 - **Continuous Integration (CI/CD):** GitHub Actions Automated Build & Test Pipeline (`.github/workflows/ci.yml`)[cite: 8, 11]
 - **External Integration:** Live Weather Forecast API Integration (Open-Meteo)[cite: 9]
 
----
+
+## Demonstration Video
+
+[Watch the RaceDay API Video Demonstration on YouTube](https://youtu.be/y9iN93op4-o)
 
 ## Repository Structure
 
