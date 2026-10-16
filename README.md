@@ -35,4 +35,4 @@ RaceDay/
 │   ├── RegistrationsControllerTests.cs
 │   ├── ResultsControllerTests.cs
 │   └── RaceDay.Tests.csproj
-└── RaceDay.sln                       <-- Visual Studio Solution File
+└── RaceDay.sln
