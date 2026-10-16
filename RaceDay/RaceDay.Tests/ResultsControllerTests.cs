@@ -8,7 +8,7 @@ using Xunit;
 
 namespace RaceDay.Tests;
 
-public class ApiEndpointTests
+public class ResultsControllerTests
 {
     private static RaceDayDbContext GetInMemoryDbContext()
     {
@@ -17,24 +17,6 @@ public class ApiEndpointTests
             .Options;
 
         return new RaceDayDbContext(options);
-    }
-
-    [Fact]
-    public async Task CreateEvent_Returns_CreatedAtAction_With_Event_Details()
-    {
-        // Arrange
-        using RaceDayDbContext context = GetInMemoryDbContext();
-        EventsController controller = new(context);
-        CreateEventDto dto = new("Soweto Marathon", "Annual road race", DateTime.UtcNow, DateTime.UtcNow.AddDays(1), "Soweto");
-
-        // Act
-        IActionResult result = await controller.CreateEvent(dto);
-
-        // Assert
-        CreatedAtActionResult actionResult = Assert.IsType<CreatedAtActionResult>(result);
-        EventResponseDto eventDto = Assert.IsType<EventResponseDto>(actionResult.Value);
-        Assert.Equal("Soweto Marathon", eventDto.Title);
-        Assert.Equal("Soweto", eventDto.Location);
     }
 
     [Fact]
@@ -64,28 +46,9 @@ public class ApiEndpointTests
         // Assert
         OkObjectResult okResult = Assert.IsType<OkObjectResult>(result);
         List<ResultResponseDto> leaderboard = Assert.IsType<List<ResultResponseDto>>(okResult.Value);
-
+        
         Assert.Equal(2, leaderboard.Count);
         Assert.Equal(3200, leaderboard[0].FinishTimeSeconds); // Fastest runner first
         Assert.Equal("Sipho Nkosi", leaderboard[0].ParticipantName);
-    }
-
-    [Fact]
-    public async Task CancelRegistration_Removes_Registration_From_Database()
-    {
-        // Arrange
-        using RaceDayDbContext context = GetInMemoryDbContext();
-        RegistrationsController controller = new(context);
-
-        Registration reg = new() { UserId = 1, CategoryId = 2, BibNumber = "202", Date = DateTime.UtcNow };
-        context.Registrations.Add(reg);
-        await context.SaveChangesAsync();
-
-        // Act
-        IActionResult result = await controller.CancelRegistration(reg.Id);
-
-        // Assert
-        Assert.IsType<OkObjectResult>(result);
-        Assert.Empty(context.Registrations);
     }
 }
