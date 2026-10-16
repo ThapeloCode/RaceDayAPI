@@ -1,3 +1,3 @@
 USE RaceDayDb;
 GO
-SELECT * FROM dbo.Route;
+SELECT * FROM dbo.Event;
