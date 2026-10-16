@@ -5,34 +5,40 @@
 
 ## Technical Stack & Architecture
 
-**Framework:** ASP.NET Core Web API (.NET 8).
-**ORM / Database:** Entity Framework Core (Code-First) & Microsoft SQL Server (`RaceDayDb`).
-**Authentication & Security:** JWT Bearer Authentication with Role-Based Access Control (`Organiser`, `Admin`, `Participant`) & BCrypt password hashing
-**Testing Suite:** xUnit Test Framework with EF Core In-Memory Database Provider.
-**Continuous Integration (CI/CD):** GitHub Actions Automated Build & Test Pipeline (`.github/workflows/ci.yml`).
-**External Integration:** Live Weather Forecast API Integration (Open-Meteo).
+- **Framework:** ASP.NET Core Web API (.NET 8)
+- **ORM & Database:** Entity Framework Core (Code-First) & Microsoft SQL Server (`RaceDayDb`)[cite: 1, 7, 12]
+- **Authentication & Security:** JWT Bearer Authentication with Role-Based Access Control (`Organiser`, `Admin`, `Participant`) & BCrypt password hashing[cite: 2, 11]
+- **Testing Suite:** xUnit Test Framework with EF Core In-Memory Database Provider[cite: 11]
+- **Continuous Integration (CI/CD):** GitHub Actions Automated Build & Test Pipeline (`.github/workflows/ci.yml`)[cite: 8, 11]
+- **External Integration:** Live Weather Forecast API Integration (Open-Meteo)[cite: 9]
 
-
+---
 
 ## Repository Structure
 
 ```text
-RaceDay/
+RaceDayAPI/                           <-- Repository Root
 ├── .github/
 │   └── workflows/
-│       └── ci.yml
-├── RaceDay/
-│   ├── Controllers/
-│   ├── Data/
-│   ├── DTOs/
-│   ├── Models/
-│   ├── Services/
-│   ├── appsettings.json
-│   ├── Program.cs
-│   └── RaceDay.csproj
-├── RaceDay.Tests/
-│   ├── EventsControllerTests.cs
-│   ├── RegistrationsControllerTests.cs
-│   ├── ResultsControllerTests.cs
-│   └── RaceDay.Tests.csproj
-└── RaceDay.sln
+│       └── ci.yml                    <-- GitHub Actions CI/CD Pipeline
+├── images/
+│   └── ci-build-success.png          <-- Successful CI Build Screenshot
+├── RaceDay/                          <-- Solution Root Folder
+│   ├── RaceDay/                      <-- Web API Project
+│   │   ├── Controllers/
+│   │   ├── Data/
+│   │   │   └── RaceDayDbContext.cs
+│   │   ├── DTOs/
+│   │   ├── Models/
+│   │   ├── Services/
+│   │   ├── appsettings.json
+│   │   ├── Program.cs
+│   │   └── RaceDay.csproj
+│   ├── RaceDay.Tests/                <-- xUnit Test Suite
+│   │   ├── AuthControllerTests.cs
+│   │   ├── EventsControllerTests.cs
+│   │   ├── RegistrationsControllerTests.cs
+│   │   ├── ResultsControllerTests.cs
+│   │   └── RaceDay.Tests.csproj
+│   └── RaceDay.sln                   <-- Solution File
+└── README.md
